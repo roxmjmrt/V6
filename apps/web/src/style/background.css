@@ -5,8 +5,12 @@ html, body {
   width: 100%;
   background: linear-gradient(45deg, #7f00ff, #e100ff) !important;
   background-attachment: fixed !important;
+  border: none !important;
+  outline: none !important;
 }
 
 #root {
   min-height: 100vh;
+  border: none !important;
+  outline: none !important;
 }

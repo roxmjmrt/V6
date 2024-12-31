@@ -207,6 +207,7 @@ export { default as TrophyGoldIcon } from "./Icons/TrophyGold";
 export { default as TrustWalletIcon } from "./Icons/TrustWallet";
 export { default as TuneIcon } from "./Icons/Tune";
 export { default as TwitterIcon } from "./Icons/Twitter";
+export { default as GitbookIcon } from "./Icons/Gitbook";
 export { default as UnlockIcon } from "./Icons/Unlock";
 export { default as VCakeIcon } from "./Icons/VCake";
 export { default as VerifiedIcon } from "./Icons/Verified";

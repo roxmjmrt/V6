@@ -32,9 +32,35 @@ const StyledNav = styled.nav`
   background-color: ${({ theme }) => theme.nav.background};
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transform: translate3d(0, 0, 0);
-
   padding-left: 16px;
   padding-right: 16px;
+  position: relative;
+`;
+
+const WelcomeText = styled.div`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 28px;
+  font-weight: 700;
+  white-space: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  letter-spacing: 0.5px;
+
+  @media (max-width: 968px) {
+    font-size: 22px;
+  }
+`;
+
+const MenuFlex = styled(Flex)`
+  position: relative;
+  z-index: 2;
+`;
+
+const RightSideFlex = styled(Flex)`
+  position: relative;
+  z-index: 2;
 `;
 
 const FixedContainer = styled("div").withConfig({
@@ -148,12 +174,13 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
           <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
             {banner && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
             <StyledNav>
-              <Flex>
+              <WelcomeText>Welcome to MarmotSwap</WelcomeText>
+              <MenuFlex>
                 <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />
-              </Flex>
-              <Flex alignItems="center" height="100%">
+              </MenuFlex>
+              <RightSideFlex alignItems="center" height="100%">
                 {rightSide}
-              </Flex>
+              </RightSideFlex>
             </StyledNav>
           </FixedContainer>
           {subLinks ? (

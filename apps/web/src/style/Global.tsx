@@ -9,10 +9,14 @@ declare module 'styled-components' {
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Kanit', sans-serif;
+    border: none !important;
+    outline: none !important;
   }
 
   html, body, #__next {
     height: 100%;
+    border: none !important;
+    outline: none !important;
   }
 
   html {
@@ -22,6 +26,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    border: none !important;
+    outline: none !important;
 
     img {
       height: auto;
@@ -32,11 +38,15 @@ const GlobalStyle = createGlobalStyle`
   #__next {
     position: relative;
     z-index: 1;
+    border: none !important;
+    outline: none !important;
   }
 
   #portal-root {
     position: relative;
     z-index: 2;
+    border: none !important;
+    outline: none !important;
   }
 `
 

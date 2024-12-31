@@ -1,6 +1,6 @@
+import { Box, Flex } from '@pancakeswap/uikit'
+import { Send, X } from 'react-feather'; // 使用 react-feather 图标库
 import { styled } from 'styled-components'
-import { Flex, Box, SvgProps } from '@pancakeswap/uikit'
-import { X, Send } from 'react-feather' // 使用 react-feather 图标库
 
 const SocialContainer = styled(Flex)`
   position: fixed;

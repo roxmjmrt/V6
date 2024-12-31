@@ -49,7 +49,7 @@ export const StyledToolsContainer = styled(Flex)`
 `;
 
 export const StyledSocialLinks = styled(SocialLinks)`
-  border-bottom: 1px solid ${darkColors.cardBorder};
+  /* 移除底部边框 */
 `;
 
 export const StyledText = styled.span`

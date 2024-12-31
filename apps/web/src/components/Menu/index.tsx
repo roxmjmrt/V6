@@ -3,7 +3,6 @@ import { Text, Menu as UikitMenu, footerLinks, useModal } from '@pancakeswap/uik
 import { usePhishingBanner } from '@pancakeswap/utils/user'
 import { NextLinkFromReactRouter } from '@pancakeswap/widgets-internal'
 import USCitizenConfirmModal from 'components/Modal/USCitizenConfirmModal'
-import { NetworkSwitcher } from 'components/NetworkSwitcher'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { usePerpUrl } from 'hooks/usePerpUrl'
 import useTheme from 'hooks/useTheme'
@@ -110,7 +109,8 @@ const Menu = (props) => {
               <Notifications />
             </Suspense>
           )}
-          <NetworkSwitcher />
+          {/* 注释掉NetworkSwitcher */}
+          {/* <NetworkSwitcher /> */}
           <UserMenu />
         </>
       }

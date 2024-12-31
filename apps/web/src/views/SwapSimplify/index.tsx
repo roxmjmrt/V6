@@ -24,18 +24,24 @@ const SwapPageWrapper = styled.div`
   background-attachment: fixed;
   padding: 32px 0 0;
   position: relative;
+
+  &::after {
+    content: none; /* 移除底部边框 */
+  }
 `
 
 const SwapContentWrapper = styled.div`
   width: 100%;
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 16px;
   position: relative;
   z-index: 2;
   margin-bottom: 32px;
+
+  &::after {
+    content: none; /* 移除底部边框 */
+  }
 `
 
 const Wrapper = styled(Box)`
@@ -46,28 +52,62 @@ const Wrapper = styled(Box)`
   }
 `
 
+const BannerSection = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 0 32px;
+
+  @media (max-width: 852px) {
+    margin-top: 20px;
+    flex-direction: column;
+  }
+`
+
+const SideBannerElement = styled.div<{ isLeft?: boolean }>`
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  ${({ isLeft }) => isLeft ? 'left: 64px;' : 'right: 64px;'}
+
+  @media (max-width: 1400px) {
+    display: none;
+  }
+
+  img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    padding: 0;
+  }
+`
+
 const ImageWrapper = styled.div`
   width: 100%;
-  max-width: 858px;
+  max-width: 900px;
   height: 180px;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  margin-top: 24px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 852px) {
-    margin-top: 20px;
     height: 140px;
   }
 
   img {
     width: 100% !important;
     height: 100% !important;
-    max-width: unset !important;
-    max-height: unset !important;
     object-fit: cover !important;
-    transform: scale(1.02); // 稍微放大一点避免边缘出现空白
+    transform: scale(1.02);
   }
 `
 
@@ -80,11 +120,20 @@ export default function V4Swap() {
     setIsChartDisplayed,
     setIsChartExpanded,
     isChartSupported,
-    // isHotTokenSupported,
   } = useContext(SwapFeaturesContext)
   const [isSwapHotTokenDisplay, setIsSwapHotTokenDisplay] = useSwapHotTokenDisplay()
-  // const { t } = useTranslation()
   const [firstTime, setFirstTime] = useState(true)
+
+  useEffect(() => {
+    const handleError = (error: Error) => {
+      console.error('Wallet connection error:', error)
+    }
+
+    window.addEventListener('error', (e) => handleError(e.error))
+    return () => {
+      window.removeEventListener('error', (e) => handleError(e.error))
+    }
+  }, [])
 
   useEffect(() => {
     if (firstTime && query.showTradingReward) {
@@ -141,20 +190,29 @@ export default function V4Swap() {
             <V4SwapForm />
           </Wrapper>
         </StyledSwapContainer>
-        <ImageWrapper>
-          <Image 
-            src="/images/marmot-banner.png"
-            alt="Marmot to the Moon"
-            fill
-            sizes="(max-width: 858px) 100vw, 858px"
-            quality={100}
-            style={{ 
-              objectFit: 'cover',
-              objectPosition: 'center'
-            }}
-            priority
-          />
-        </ImageWrapper>
+        <BannerSection>
+          <SideBannerElement isLeft>
+            <Image 
+              src="/images/banner/left-banner-element.png" 
+              alt="Left Banner" 
+              width={160}
+              height={160}
+              style={{ objectFit: 'contain' }}
+            />
+          </SideBannerElement>
+          <ImageWrapper>
+            <Image src="/images/banner/marmot-banner.png" alt="Marmot Banner" fill />
+          </ImageWrapper>
+          <SideBannerElement>
+            <Image 
+              src="/images/banner/right-banner-element.png" 
+              alt="Right Banner" 
+              width={160}
+              height={160}
+              style={{ objectFit: 'contain' }}
+            />
+          </SideBannerElement>
+        </BannerSection>
       </SwapContentWrapper>
     </SwapPageWrapper>
   )
